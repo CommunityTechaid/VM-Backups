@@ -1,0 +1,6 @@
+[Unit]
+Description=Creates backups of all the VMs
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/bash -c "/usr/local/bin/VM-Backup-Script.sh"
