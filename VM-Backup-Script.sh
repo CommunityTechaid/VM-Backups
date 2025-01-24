@@ -18,6 +18,7 @@
 #
 # TODO:
 #      - Add arg parsing to enable XML template generation
+#      - Add arg for manual use (removed sleep / spinner for .service use)
 #
 #########################################################
 
@@ -89,11 +90,12 @@ function run_backups {
         sudo virsh backup-begin $vm_name $temp_version
 
         # Wait for backup to complete     
-        local -a marks=( '/' '-' '\' '|' )
+        # Commented this out 'coz it was messing up usage in .service context
+        # local -a marks=( '/' '-' '\' '|' )
         while [ "$(sudo virsh domjobinfo $vm_name | grep 'Job type:' | awk '{ print $3 }')" != "None" ];
             do
-                printf '%s\r' "${marks[i++ % ${#marks[@]}]}"
-                sleep .2
+        #         printf '%s\r' "${marks[i++ % ${#marks[@]}]}"
+                sleep 5
             done
 
 
